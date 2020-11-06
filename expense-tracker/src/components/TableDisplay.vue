@@ -101,106 +101,105 @@
 </template>
 
 <script>
-import axios from "axios";
-
-axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
-const baseURL = "http://localhost:5000/addExpense";
+import axios from 'axios'
+axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*'
+const baseURL = 'http://localhost:5000/addExpense'
 export default {
-  name: "TableDisplay",
-  data() {
+  name: 'TableDisplay',
+  data () {
     return {
-      //Table config data
+      // Table config data
       sortDesc: false,
-      sortBy: "date",
-      StickyHeader: "480px",
+      sortBy: 'date',
+      StickyHeader: '480px',
       dataFields: [
-        { key: "date", sortable: true },
-        { key: "description", sortable: true },
-        { key: "price", sortable: true },
-        { key: "category", sortable: true },
-        { key: "card", sortable: true },
+        { key: 'date', sortable: true },
+        { key: 'description', sortable: true },
+        { key: 'price', sortable: true },
+        { key: 'category', sortable: true },
+        { key: 'card', sortable: true }
       ],
       dark: this.dark,
       total: 0,
-      //API config data
+      // API config data
       initData: [],
-      description: "",
-      category: "null",
+      description: '',
+      category: 'null',
       fail: 0,
-      card: "null",
-      date: "",
-      price: "",
+      card: 'null',
+      date: '',
+      price: '',
       dismissSecs: 2,
       dismissCountDown: 0,
       showDismissibleAlert: false,
 
-      //Dropdown data
+      // Dropdown data
       catOptions: [
-        { text: "Select One", value: null },
-        "GROCERIES",
-        "UTILITIES",
-        "SHOPPING",
-        "TRAVEL",
-        "SUBSCRIPTIONS",
-        "ENTERTAINMENT",
-        "INCOME",
-        "RESTAURANTS",
-        "CREDIT CARD",
+        { text: 'Select One', value: null },
+        'GROCERIES',
+        'UTILITIES',
+        'SHOPPING',
+        'TRAVEL',
+        'SUBSCRIPTIONS',
+        'ENTERTAINMENT',
+        'INCOME',
+        'RESTAURANTS',
+        'CREDIT CARD'
       ],
       crdOptions: [
-        { text: "Select One", value: null },
-        "BOFA CHECKING",
-        "BOFA CREDIT CARD",
-        "CITI CREDIT CARD",
-        "DCU CHECKING",
-        "DISOCVER SAVINGS",
-        "CHASE CREDIT CARD",
-        "MARRIOTT CREDIT CARD",
-        "DISCOVER CREDIT CARD",
-      ],
-    };
+        { text: 'Select One', value: null },
+        'BOFA CHECKING',
+        'BOFA CREDIT CARD',
+        'CITI CREDIT CARD',
+        'DCU CHECKING',
+        'DISOCVER SAVINGS',
+        'CHASE CREDIT CARD',
+        'MARRIOTT CREDIT CARD',
+        'DISCOVER CREDIT CARD'
+      ]
+    }
   },
-  mounted() {
+  mounted () {
     axios
-      .get("http://localhost:5000/getExpenses")
-      .then((response) => {
-        this.initData = response.data;
-        this.total = response.data.Sum;
+      .get('http://localhost:5000/getExpenses')
+      .then(response => {
+        this.initData = response.data
+        this.total = response.data.Sum
       })
-      .catch((err) => console.error(err));
+      .catch(err => console.error(err))
   },
   methods: {
-    addItem() {
+    addItem () {
       axios
         .post(baseURL, {
           date: this.date,
           description: this.description,
           card: this.card,
           category: this.category,
-          price: this.price,
+          price: this.price
         })
-        .then((response) => {
-          this.initData = response.data;
-          this.$root.$emit("ExpenseAdded");
+        .then(response => {
+          this.initData = response.data
+          this.$root.$emit('ExpenseAdded')
         })
 
-        .catch((err) => console.error(err));
-      this.dismissCountDown = 2;
-      //this.name = "";
-      this.date = "";
-      this.description = "";
-      this.card = "";
-      this.category = "";
-      this.price == "";
+        .catch(err => console.error(err))
+      this.dismissCountDown = 2
+      // this.name = "";
+      this.date = ''
+      this.description = ''
+      this.card = ''
+      this.category = ''
+      this.price = ''
     },
-    showAlert() {
-      this.dismissCountDown = this.dismissSecs;
+    showAlert () {
+      this.dismissCountDown = this.dismissSecs
     },
-    countDownChanged(dismissCountDown) {
-      this.dismissCountDown = dismissCountDown;
-    },
-  },
-};
+    countDownChanged (dismissCountDown) {
+      this.dismissCountDown = dismissCountDown
+    }
+  }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

@@ -1,5 +1,5 @@
-import { HorizontalBar, mixins } from "vue-chartjs";
-const { reactiveProp } = mixins;
+import { HorizontalBar, mixins } from 'vue-chartjs'
+const { reactiveProp } = mixins
 
 export default {
   extends: HorizontalBar,
@@ -7,8 +7,8 @@ export default {
   props: {
     chartData: {
       type: Object,
-      default: null,
-    },
+      default: null
+    }
   },
   data: () => ({
     options: {
@@ -17,31 +17,31 @@ export default {
 
       legend: {
         display: false,
-        position: "bottom",
-        fontColor: "black",
+        position: 'bottom',
+        fontColor: 'black'
       },
       title: {
         display: false,
-        text: "TARGET VS ACTUAL EXPENSES",
+        text: 'TARGET VS ACTUAL EXPENSES'
       },
       scales: {
         xAxes: [
           {
             gridLines: {
-              color: "rgba(0,0,0,0)",
+              color: 'rgba(0,0,0,0)'
             },
             beginAtzero: 0,
             ticks: {
               max: 5000,
               min: 0,
-              stepSize: 1000,
-            },
-          },
-        ],
-      },
-    },
+              stepSize: 1000
+            }
+          }
+        ]
+      }
+    }
   }),
-  mounted() {
-    this.renderChart(this.ChartData, this.options);
-  },
-};
+  mounted () {
+    this.renderChart(this.ChartData, this.options)
+  }
+}

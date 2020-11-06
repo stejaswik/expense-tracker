@@ -37,12 +37,12 @@
 </template>
 
 <script>
-import TableDisplay from "./components/TableDisplay.vue";
-import GraphSample from "./components/GraphSample.vue";
-import AllCreditCardData from "./components/AllCreditCardData.vue";
+import TableDisplay from './components/TableDisplay.vue'
+import GraphSample from './components/GraphSample.vue'
+import AllCreditCardData from './components/AllCreditCardData.vue'
 // import MonthTotal from "./components/MonthTotal.vue";
-import PrevMonthTotal from "./components/PrevMonthTotal.vue";
-import AllMonthsData from "./components/AllMonthsData.vue";
+import PrevMonthTotal from './components/PrevMonthTotal.vue'
+import AllMonthsData from './components/AllMonthsData.vue'
 // import AllUtilitiesData from "./components/AllUtilitiesData.vue";
 // import AllSubscriptionsData from "./components/AllSubscriptionsData.vue";
 // import AllRestaurantsData from "./components/AllRestaurantsData.vue";
@@ -51,14 +51,14 @@ import AllMonthsData from "./components/AllMonthsData.vue";
 // import AllTravelData from "./components/AllTravelData.vue";
 // import AllEntertainmentData from "./components/AllEntertainmentData.vue";
 export default {
-  name: "App",
+  name: 'App',
   components: {
     TableDisplay,
     AllCreditCardData,
     GraphSample,
     // MonthTotal,
     PrevMonthTotal,
-    AllMonthsData,
+    AllMonthsData
     // AllUtilitiesData,
     // AllSubscriptionsData,
     // AllRestaurantsData,
@@ -66,8 +66,8 @@ export default {
     // AllShoppingData,
     // AllTravelData,
     // AllEntertainmentData
-  },
-};
+  }
+}
 </script>
 
 <style>

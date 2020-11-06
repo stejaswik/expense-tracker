@@ -8,88 +8,88 @@
 </template>
 
 <script>
-import BarChart from "./BarChart.js";
-import axios from "axios";
+import BarChart from './BarChart.js'
+import axios from 'axios'
 
 export default {
   components: {
     BarChart
   },
-  data() {
+  data () {
     return {
       datacollection: null,
       loaded: false,
       data: []
-    };
+    }
   },
-  async mounted() {
-    this.getBankSplits();
+  async mounted () {
+    this.getBankSplits()
 
-    this.$root.$on("ExpenseAdded", () => {
-      this.getBankSplits();
-    });
+    this.$root.$on('ExpenseAdded', () => {
+      this.getBankSplits()
+    })
   },
   methods: {
-    fillData() {
+    fillData () {
       this.datacollection = {
         labels: [
-          "Entertainment",
-          "Groceries",
-          "Restaurants",
-          "Shopping",
-          "Travel",
-          "Utilities",
-          "Subscriptions"
+          'Entertainment',
+          'Groceries',
+          'Restaurants',
+          'Shopping',
+          'Travel',
+          'Utilities',
+          'Subscriptions'
         ],
         datasets: [
           {
-            label: "Previous Month",
+            label: 'Previous Month',
             backgroundColor: [
-              "#E46651",
-              "#E46651",
-              "#E46651",
-              "#E46651",
-              "#E46651",
-              "#E46651",
-              "#E46651",
-              "#E46651"
+              '#E46651',
+              '#E46651',
+              '#E46651',
+              '#E46651',
+              '#E46651',
+              '#E46651',
+              '#E46651',
+              '#E46651'
             ],
             borderWidth: 1,
             hoverBorderWidth: 1,
-            hoverBorderColor: "#ffffff",
+            hoverBorderColor: '#ffffff',
             data: this.PrevData
           },
 
           {
-            label: "Current Month",
+            label: 'Current Month',
             backgroundColor: [
-              "#41B883",
-              "#41B883",
-              "#41B883",
-              "#41B883",
-              "#41B883",
-              "#41B883",
-              "#41B883",
-              "#41B883"
+              '#41B883',
+              '#41B883',
+              '#41B883',
+              '#41B883',
+              '#41B883',
+              '#41B883',
+              '#41B883',
+              '#41B883'
             ],
-            borderColor: "lightpink",
-            pointBackgroundColor: "blue",
+            borderColor: 'lightpink',
+            pointBackgroundColor: 'blue',
             borderWidth: 1,
             hoverBorderWidth: 1,
-            hoverBorderColor: "#ffffff",
+            hoverBorderColor: '#ffffff',
             data: this.data,
             legend: {
-              position: "bottom"
+              position: 'bottom'
             }
           }
         ]
-      };
+      }
     },
-    getBankSplits() {
+    getBankSplits () {
       axios
-        .get("http://localhost:5000/getBankSplits")
+        .get('http://localhost:5000/getBankSplits')
         .then(response => {
-          var results = response.data;
+          var results = response.data
 
           this.PrevData = [
             results.PrevMonthTotal[0].EntertainmentPrev,
@@ -99,7 +99,7 @@ export default {
             results.PrevMonthTotal[0].TravelPrev,
             results.PrevMonthTotal[0].UtilitiesPrev,
             results.PrevMonthTotal[0].SubscriptionsPrev
-          ];
+          ]
 
           this.data = [
             results.TotalCategory[0].Entertainment,
@@ -109,22 +109,22 @@ export default {
             results.TotalCategory[0].Travel,
             results.TotalCategory[0].Utilities,
             results.TotalCategory[0].Subscriptions
-          ];
-          this.fillData();
+          ]
+          this.fillData()
         })
-        .catch(err => console.error(err));
+        .catch(err => console.error(err))
     }
   },
   computed: {
-    myStyles() {
+    myStyles () {
       return {
-        height: "40%",
-        width: "90%",
-        position: "relative"
-      };
+        height: '40%',
+        width: '90%',
+        position: 'relative'
+      }
     }
   }
-};
+}
 </script>
 
 <style scoped></style>

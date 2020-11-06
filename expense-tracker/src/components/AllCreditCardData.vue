@@ -8,29 +8,29 @@
 </template>
 
 <script>
-import BarChart from "./LineChart.js";
-import axios from "axios";
+import BarChart from './LineChart.js'
+import axios from 'axios'
 
 export default {
   components: {
     BarChart
   },
-  data() {
+  data () {
     return {
       datacollection: null,
       loaded: false,
       CreditCardData: []
-    };
+    }
   },
-  mounted() {
-    this.getBankSplits();
+  mounted () {
+    this.getBankSplits()
 
-    this.$root.$on("ExpenseAdded", () => {
-      this.getBankSplits();
-    });
+    this.$root.$on('ExpenseAdded', () => {
+      this.getBankSplits()
+    })
   },
   methods: {
-    fillData() {
+    fillData () {
       this.datacollection = {
         labels: this.labels,
         datasets: [
@@ -38,45 +38,45 @@ export default {
             borderWidth: 3,
             data: this.CreditCardData,
             barThickness: 25,
-            backgroundColor: "rgba(255, 255, 255, 0.8)",
+            backgroundColor: 'rgba(255, 255, 255, 0.8)',
             opacity: 1,
-            borderColor: "red",
+            borderColor: 'red',
             // borderJoinStyle: "bevel",
             lineTension: 0
           }
         ]
-      };
+      }
     },
-    getBankSplits() {
+    getBankSplits () {
       axios
-        .get("http://localhost:5000/getSum")
+        .get('http://localhost:5000/getSum')
         .then(response => {
-          var results = response.data;
-          var CreditCardmonthsData = results.AllCreditCardTotal;
-          var lab = [];
-          var out = [];
+          var results = response.data
+          var CreditCardmonthsData = results.AllCreditCardTotal
+          var lab = []
+          var out = []
           for (var i = 0; i < CreditCardmonthsData.length; i++) {
-            lab.push(CreditCardmonthsData[i].month);
-            out.push(CreditCardmonthsData[i].total);
+            lab.push(CreditCardmonthsData[i].month)
+            out.push(CreditCardmonthsData[i].total)
           }
 
-          this.labels = lab;
-          this.CreditCardData = out;
-          this.fillData();
+          this.labels = lab
+          this.CreditCardData = out
+          this.fillData()
         })
-        .catch(err => console.error(err));
+        .catch(err => console.error(err))
     }
   },
   computed: {
-    myStyles() {
+    myStyles () {
       return {
-        height: "60%",
-        width: "85%",
-        position: "relative"
-      };
+        height: '60%',
+        width: '85%',
+        position: 'relative'
+      }
     }
   }
-};
+}
 </script>
 
 <style scoped></style>

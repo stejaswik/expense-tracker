@@ -8,62 +8,62 @@
 </template>
 
 <script>
-import HorizontalBar from "./HorizontalBarChart.js";
-import axios from "axios";
+import HorizontalBar from './HorizontalBarChart.js'
+import axios from 'axios'
 
 export default {
   components: {
-    HorizontalBar,
+    HorizontalBar
   },
-  data() {
+  data () {
     return {
       datacollection: null,
       loaded: false,
-      data: [],
-    };
+      data: []
+    }
   },
-  mounted() {
-    this.getBankSplits();
+  mounted () {
+    this.getBankSplits()
 
-    this.$root.$on("ExpenseAdded", () => {
-      this.getBankSplits();
-    });
+    this.$root.$on('ExpenseAdded', () => {
+      this.getBankSplits()
+    })
   },
   methods: {
-    fillData() {
+    fillData () {
       this.datacollection = {
-        labels: ["Actual", "Target"],
+        labels: ['Actual', 'Target'],
         datasets: [
           {
-            backgroundColor: ["#41BFFF", "#515e66"],
+            backgroundColor: ['#41BFFF', '#515e66'],
             borderWidth: 3,
             data: this.data,
-            barThickness: 25,
-          },
-        ],
-      };
+            barThickness: 25
+          }
+        ]
+      }
     },
-    getBankSplits() {
+    getBankSplits () {
       axios
-        .get("http://localhost:5000/getBankSplits")
+        .get('http://localhost:5000/getBankSplits')
         .then((response) => {
-          var results = response.data;
-          this.data = [results.Total[0].MonthlyTotal, 3600];
-          this.fillData();
+          var results = response.data
+          this.data = [results.Total[0].MonthlyTotal, 3600]
+          this.fillData()
         })
-        .catch((err) => console.error(err));
-    },
+        .catch((err) => console.error(err))
+    }
   },
   computed: {
-    myStyles() {
+    myStyles () {
       return {
-        height: "40%",
-        width: "90%",
-        position: "relative",
-      };
-    },
-  },
-};
+        height: '40%',
+        width: '90%',
+        position: 'relative'
+      }
+    }
+  }
+}
 </script>
 
 <style scoped></style>

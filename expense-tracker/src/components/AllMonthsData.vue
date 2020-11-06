@@ -8,29 +8,29 @@
 </template>
 
 <script>
-import BarChart from "./LineChart.js";
-import axios from "axios";
+import BarChart from './LineChart.js'
+import axios from 'axios'
 
 export default {
   components: {
     BarChart
   },
-  data() {
+  data () {
     return {
       datacollection: null,
       loaded: false,
       data: []
-    };
+    }
   },
-  mounted() {
-    this.getBankSplits();
+  mounted () {
+    this.getBankSplits()
 
-    this.$root.$on("ExpenseAdded", () => {
-      this.getBankSplits();
-    });
+    this.$root.$on('ExpenseAdded', () => {
+      this.getBankSplits()
+    })
   },
   methods: {
-    fillData() {
+    fillData () {
       this.datacollection = {
         labels: this.labels,
         datasets: [
@@ -38,47 +38,47 @@ export default {
             borderWidth: 3,
             data: this.data,
             barThickness: 25,
-            backgroundColor: "rgba(255, 255, 255, 0.8)",
+            backgroundColor: 'rgba(255, 255, 255, 0.8)',
             opacity: 1,
-            borderColor: "green",
+            borderColor: 'green',
             // borderJoinStyle: "bevel",
             lineTension: 0
           }
         ]
-      };
+      }
     },
-    getBankSplits() {
+    getBankSplits () {
       axios
-        .get("http://localhost:5000/getSum")
+        .get('http://localhost:5000/getSum')
         .then(response => {
-          var results = response.data;
-          var monthsData = results.AllMonthTotal;
-          console.log(monthsData);
+          var results = response.data
+          var monthsData = results.AllMonthTotal
+          console.log(monthsData)
           // this.data = [results.AllMonthTotal.length, 36];
-          var lab = [];
-          var out = [];
+          var lab = []
+          var out = []
           for (var i = 0; i < monthsData.length; i++) {
-            lab.push(monthsData[i].month);
-            out.push(monthsData[i].total);
+            lab.push(monthsData[i].month)
+            out.push(monthsData[i].total)
           }
 
-          this.labels = lab;
-          this.data = out;
-          this.fillData();
+          this.labels = lab
+          this.data = out
+          this.fillData()
         })
-        .catch(err => console.error(err));
+        .catch(err => console.error(err))
     }
   },
   computed: {
-    myStyles() {
+    myStyles () {
       return {
-        height: "60%",
-        width: "85%",
-        position: "relative"
-      };
+        height: '60%',
+        width: '85%',
+        position: 'relative'
+      }
     }
   }
-};
+}
 </script>
 
 <style scoped></style>

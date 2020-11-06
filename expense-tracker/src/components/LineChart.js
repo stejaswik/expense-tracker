@@ -1,5 +1,5 @@
-import { Line, mixins } from "vue-chartjs";
-const { reactiveProp } = mixins;
+import { Line, mixins } from 'vue-chartjs'
+const { reactiveProp } = mixins
 
 export default {
   extends: Line,
@@ -7,8 +7,8 @@ export default {
   props: {
     chartData: {
       type: Object,
-      default: null,
-    },
+      default: null
+    }
   },
   data: () => ({
     options: {
@@ -16,30 +16,30 @@ export default {
       maintainAspectRatio: true,
       legend: {
         display: false,
-        position: "bottom",
-        fontColor: "black",
+        position: 'bottom',
+        fontColor: 'black'
       },
       title: {
         display: false,
-        text: "TARGET VS ACTUAL EXPENSES",
+        text: 'TARGET VS ACTUAL EXPENSES'
       },
       scales: {
         xAxes: [
           {
             gridLines: {
-              color: "rgba(0,0,0,0)",
+              color: 'rgba(0,0,0,0)'
             },
             ticks: {
               autoSkip: true,
               fontSize: 15,
-              maxTicksLimit: 10,
-            },
-          },
+              maxTicksLimit: 10
+            }
+          }
         ],
         yAxes: [
           {
             gridLines: {
-              color: "rgba(0,0,0,0)",
+              color: 'rgba(0,0,0,0)'
             },
             beginAtzero: 0,
             ticks: {
@@ -48,14 +48,14 @@ export default {
               suggestedMin: 0,
               stepSize: 500,
               autoSkip: true,
-              maxTicksLimit: 8,
-            },
-          },
-        ],
-      },
-    },
+              maxTicksLimit: 8
+            }
+          }
+        ]
+      }
+    }
   }),
-  mounted() {
-    this.renderChart(this.ChartData, this.options);
-  },
-};
+  mounted () {
+    this.renderChart(this.ChartData, this.options)
+  }
+}

@@ -1,5 +1,5 @@
-import { Doughnut, mixins } from "vue-chartjs";
-const { reactiveProp } = mixins;
+import { Doughnut, mixins } from 'vue-chartjs'
+const { reactiveProp } = mixins
 
 export default {
   extends: Doughnut,
@@ -7,7 +7,7 @@ export default {
   props: {
     chartData: {
       type: Object,
-      default: null,
+      default: null
     },
 
     options: {
@@ -15,11 +15,11 @@ export default {
       maintainAspectRatio: true,
       legend: {
         display: true,
-        position: "bottom",
-      },
-    },
+        position: 'bottom'
+      }
+    }
   },
-  mounted() {
-    this.renderChart(this.ChartData, this.options);
-  },
-};
+  mounted () {
+    this.renderChart(this.ChartData, this.options)
+  }
+}
